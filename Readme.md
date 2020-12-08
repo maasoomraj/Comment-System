@@ -27,7 +27,7 @@ Clone the repository
 ```
 git clone https://github.com/maasoomraj/Comment-System.git Comment
 ```
-Change directory to /VoteChain
+Change directory to /Comment
 ```
 cd Comment
 ```
