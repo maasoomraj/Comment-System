@@ -75,16 +75,16 @@ export default class App extends Component {
     commentArray = comments.map((comment) => {
       return (
         <div>
-        <span class="time">{this.timeInFormat(new Date(comment.date))}</span><br />
-        <div class="row">
-            <div class="col-md-4">
-                <img src={profileImg}  alt="profileicon" class="profileicon" />
+        <span className="time">{this.timeInFormat(new Date(comment.date))}</span><br />
+        <div className="row">
+            <div className="col-md-4">
+                <img src={profileImg}  alt="profileicon" className="profileicon" />
             </div>           
-            <div class="col-md-4">
-                <span class="name">{comment.name}</span><br />
+            <div className="col-md-4">
+                <span className="name"><b>{comment.name}</b></span><br />
             </div>            
-            <div class="col-md-4">
-                <span class="comment">{comment.comment}</span><br />
+            <div className="col-md-4">
+                <span className="comment">{comment.comment}</span><br />
             </div>
             </div>   
         </div>
@@ -101,24 +101,24 @@ export default class App extends Component {
       threadArray = threads.map((thread) => {
         const comments = allComments.filter((comment) => comment.replyTo === thread._id)
         return (
-          <div class="commentbox">
-          <span class="time">{this.timeInFormat(new Date(thread.date))}</span><br />
-          <div class="row">
-              <div class="col-md-4">
-                  <img src={profileImg}  alt="profileicon" class="profileicon" />
+          <div className="commentbox">
+          <span className="time">{this.timeInFormat(new Date(thread.date))}</span><br />
+          <div className="row">
+              <div className="col-md-4">
+                  <img src={profileImg}  alt="profileicon" className="profileicon" />
               </div>           
-              <div class="col-md-4">
-                  <span class="name">{thread.name}</span><br />
+              <div className="col-md-4">
+                  <span className="name"><b>{thread.name}</b></span><br />
               </div>            
-              <div class="col-md-4">
-                  <span class="comment">{thread.comment}</span><br />
+              <div className="col-md-4">
+                  <span className="comment">{thread.comment}</span><br />
               </div>
               </div>
               {this.threadComments(comments)}
           <div>
               <textarea
                 type="text"
-                class="txtarea"
+                className="txtarea"
                 id="txt"
                 rows="2"
                 placeholder="Reply ..."
@@ -128,7 +128,7 @@ export default class App extends Component {
               <img
                 src={replyImg}
                 alt="replyicon"
-                class="replyicon"
+                className="replyicon"
                 onClick={() => {
                   this.addComment(reply, thread._id)
                 }}
@@ -145,10 +145,10 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <h1 class="heading">Comment System : </h1>
-        <form class="form-inline addname">
+        <h1 className="heading">Comment System : </h1>
+        <form className="form-inline addname">
           <input
-            class="form-control"
+            className="form-control"
             type="text"
             placeholder="Add your name"
             aria-label="Search"
@@ -158,7 +158,7 @@ export default class App extends Component {
         </form>
         <textarea
           type="text"
-          class="txtarea"
+          className="txtarea"
           id="txt"
           rows="2"
           placeholder="Add a new thread"
@@ -168,14 +168,14 @@ export default class App extends Component {
         <img
           src={replyImg}
           alt="replyicon"
-          class="replyicon"
+          className="replyicon"
           onClick={() => this.addComment(this.state.newComment, "All")}
         />
 
-        <div class="col-md-6 mb-4 search">
-          <form class="form-inline">
+        <div className="col-md-6 mb-4 search">
+          <form className="form-inline">
             <input
-              class="form-control"
+              className="form-control"
               type="text"
               placeholder="Type a keyword"
               aria-label="Search"
@@ -184,7 +184,7 @@ export default class App extends Component {
             />
             <button
               type="button"
-              class="searchbtn"
+              className="searchbtn"
               onClick={() => this.search(this.state.search)}
             >
               Search
@@ -193,11 +193,11 @@ export default class App extends Component {
         </div>
 
         {this.state.isSearch === true &&
-        <div class="search-filter">
-          <h4 class="searched-for">You searched for "{this.state.searchedFor}"</h4>
+        <div className="search-filter">
+          <h4 className="searched-for">You searched for "{this.state.searchedFor}"</h4>
           <button
             type="button"
-            class= "searchbtn"
+            className= "searchbtn"
             onClick={() => this.setState({ isSearch : false})}
           >
             Erase Filter

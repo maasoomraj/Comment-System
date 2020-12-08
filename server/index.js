@@ -1,13 +1,13 @@
 const express = require('express')
-// const middleware = require('./Routes/index')
 const { dbConnect } = require('./Utils/database')
-
 const Comment = require('./Routes/Comment')
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 
 const app = express()
 app.use(express.json())
 app.use(Comment)
-// app.use(middleware)
+app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const PORT = 3001
 app.listen(PORT, () => {

@@ -1,0 +1,124 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Comment System",
+      "description": "Add, View, Reply or Search any comment"
+    },
+    "tags": [
+      {
+        "name": "Comments",
+        "description": "APIs for adding comment/reply, view all comments and search for comments"
+      }
+    ],
+    "paths": {
+      "/view-comments": {
+        "get": {
+          "tags": ["Comments"],
+          "summary": "Get all comments and replies available",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Comments"
+              }
+            }
+          }
+        }
+      },
+      "/add-comment": {
+        "post": {
+          "tags": ["Comments"],
+          "summary": "Add a new comment or reply to any comment",
+          "requestBody": {
+            "description": "Comment Object for posting, `comment` : comment you want to make, `replyTo` : _id of comment you wanna reply, or `All` if new comment is to be made, `name` : name of person commenting",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Comment"
+                }
+              }
+            }
+          },
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Comment"
+              }
+            },
+            "400": {
+              "description": "Failed to post data."
+            }
+          }
+        }
+      },
+      "/search-comment": {
+        "post": {
+          "tags": ["Comments"],
+          "summary": "Search for a comment or reply using Regular Expressions",
+          "requestBody": {
+            "description": "Keyword Object for searching",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Search"
+                }
+              }
+            }
+          },
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Comments"
+              }
+            },
+            "400": {
+              "description": "Failed to post data."
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "replyTo": {
+            "type": "string"
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      },
+      "Search": {
+        "type": "object",
+        "properties": {
+          "search": {
+            "type": "string"
+          }
+        }
+      },
+      "Comments": {
+        "type": "object",
+        "properties": {
+          "comments": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/definitions/Comment"
+            }
+          }
+        }
+      }
+    }
+  }
+  
