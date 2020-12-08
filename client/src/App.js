@@ -9,7 +9,7 @@ export default class App extends Component {
   constructor () {
     super()
     this.state = {
-      name : "Anonymous",
+      name : "",
       comments : [],
       searchedComments : [],
       isSearch : false,
@@ -29,6 +29,7 @@ export default class App extends Component {
   // Add a new thread or reply to existing thread
   addComment = async (comment, replyTo) => {
     await axios.post('/add-comment', {
+      name : this.state.name || "Anonymous",
       comment : comment,
       replyTo : replyTo
     }).then((res) => {
@@ -80,7 +81,7 @@ export default class App extends Component {
                 <img src={profileImg}  alt="profileicon" class="profileicon" />
             </div>           
             <div class="col-md-4">
-                <span class="name">{this.state.name}</span><br />
+                <span class="name">{comment.name}</span><br />
             </div>            
             <div class="col-md-4">
                 <span class="comment">{comment.comment}</span><br />
@@ -107,7 +108,7 @@ export default class App extends Component {
                   <img src={profileImg}  alt="profileicon" class="profileicon" />
               </div>           
               <div class="col-md-4">
-                  <span class="name">{this.state.name}</span><br />
+                  <span class="name">{thread.name}</span><br />
               </div>            
               <div class="col-md-4">
                   <span class="comment">{thread.comment}</span><br />
@@ -140,6 +141,7 @@ export default class App extends Component {
     return threadArray
   }
 
+
   render() {
     return (
       <div>
@@ -150,13 +152,9 @@ export default class App extends Component {
             type="text"
             placeholder="Add your name"
             aria-label="Search"
+            value={this.state.name}
+            onChange={e => this.setState({ name : e.target.value })}
           />
-          <button
-            type="button"
-            class="searchbtn"
-          >
-            Add
-          </button>
         </form>
         <textarea
           type="text"

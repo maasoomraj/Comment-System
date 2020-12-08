@@ -7,7 +7,8 @@
 ## Backend
 - Node.JS has been used to serve backend which will run on  `http://localhost:3001/`
 - API for viewing all threads and comments, add new comment, search for any keyword
-- MongoDB has been used as database to store the details of comments
+- `MongoDB` has been used as database to store the details of comments
+- **MongoDB URI has been exposed for the smooth working, and security purpose has been kept in mind**
 
 ## Frontend
 - React.JS has been used to serve the frontend for the portal which runs on  `http://localhost:3000/`
@@ -27,9 +28,14 @@ Install dependencies for backend and frontend
 ```
 npm run build
 ```
-Start the server and client
+Start the server and client simultaneously
 ```
 npm run start
+```
+Or you can start the server and client separately
+```
+npm run start-server
+npm run start-client
 ```
 
 ## Authors

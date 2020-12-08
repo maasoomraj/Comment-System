@@ -7,6 +7,7 @@ exports.viewComments = async (req, res) => {
 
 exports.addComment = async (req, res) => {
     const newComment = new Comment({
+        name : req.body.name,
         comment : req.body.comment,
         replyTo : req.body.replyTo
     })
