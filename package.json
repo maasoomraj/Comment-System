@@ -1,0 +1,16 @@
+{
+  "name": "comment-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "frontend": "cd client && npm install",
+    "start-client": "cd client && npm start",
+    "backend": "cd server && npm install",
+    "start-server": "cd server && node index.js",
+    "build": "npm run frontend && npm run backend",
+    "start": "npm run start-server & npm run start-client"
+  },
+  "author": "",
+  "license": "ISC"
+}
